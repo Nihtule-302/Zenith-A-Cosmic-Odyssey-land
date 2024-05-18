@@ -1,0 +1,4 @@
+﻿  OpenGL2DTemplate.cpp
+D:\Hobby\Programing\Graphics\Zenith land\OpenGL2DTemplate.cpp(451,6): warning C4101: 'y': unreferenced local variable
+OpenGL2DTemplate.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+  OpenGL2DTemplate.vcxproj -> D:\Hobby\Programing\Graphics\Zenith land\Debug\OpenGL2DTemplate.exe
