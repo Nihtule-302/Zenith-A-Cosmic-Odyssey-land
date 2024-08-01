@@ -47,9 +47,13 @@ struct hitBox
 	int newY;
 };
 
+float resolotionScalingFactor = 1.4;
 // Window settings
-int windowHeight = 400;
-int windowWidth = 700;
+int windowHeight = 400* resolotionScalingFactor;
+int windowWidth = 700* resolotionScalingFactor;
+
+int screenX = 700;
+int screenY = 400;
 
 //debugging
 bool showHitbox = false;
@@ -838,8 +842,8 @@ void land() {
 
 		moveCoin[1][0] = 700.0;
 		moveCoin[1][1] = 700.0;
-		coinCoordinate[1][0].x = randomValue(coinWidth, windowWidth - obstacleWidth - coinWidth);
-		coinCoordinate[1][0].x = randomValue(coinWidth, windowWidth - obstacleWidth - coinWidth);
+		coinCoordinate[1][0].x = randomValue(coinWidth, screenX - obstacleWidth - coinWidth);
+		coinCoordinate[1][0].x = randomValue(coinWidth, screenX - obstacleWidth - coinWidth);
 
 	}
 	else if (moveGround[2] <= -1400 && move_right) {
@@ -849,8 +853,8 @@ void land() {
 
 		moveCoin[2][0] = 0.0;
 		moveCoin[2][1] = 0.0;
-		coinCoordinate[2][0].x = randomValue(windowWidth + coinWidth, 2 * windowWidth - obstacleWidth - coinWidth);
-		coinCoordinate[2][0].x = randomValue(windowWidth + coinWidth, 2 * windowWidth - obstacleWidth - coinWidth);
+		coinCoordinate[2][0].x = randomValue(screenX + coinWidth, 2 * screenX - obstacleWidth - coinWidth);
+		coinCoordinate[2][0].x = randomValue(screenX + coinWidth, 2 * screenX - obstacleWidth - coinWidth);
 
 		moveGround[0] = 0.0;
 		coinAvailable[0][0] = true;
@@ -867,8 +871,8 @@ void land() {
 
 		moveCoin[1][0] = -700.0;
 		moveCoin[1][1] = -700.0;
-		coinCoordinate[1][0].x = randomValue(coinWidth, windowWidth - obstacleWidth - coinWidth);
-		coinCoordinate[1][0].x = randomValue(coinWidth, windowWidth - obstacleWidth - coinWidth);
+		coinCoordinate[1][0].x = randomValue(coinWidth, screenX - obstacleWidth - coinWidth);
+		coinCoordinate[1][0].x = randomValue(coinWidth, screenX - obstacleWidth - coinWidth);
 
 	}
 	else if (moveGround[0] >= 1400 && move_left) {
@@ -878,8 +882,8 @@ void land() {
 
 		moveCoin[0][0] = 0.0;
 		moveCoin[0][1] = 0.0;
-		coinCoordinate[0][0].x = randomValue(-windowWidth + coinWidth, -obstacleWidth - coinWidth);
-		coinCoordinate[0][0].x = randomValue(-windowWidth + coinWidth, -obstacleWidth - coinWidth);
+		coinCoordinate[0][0].x = randomValue(-screenX + coinWidth, -obstacleWidth - coinWidth);
+		coinCoordinate[0][0].x = randomValue(-screenX + coinWidth, -obstacleWidth - coinWidth);
 
 		moveGround[2] = 0.0;
 		coinAvailable[2][0] = true;
@@ -1221,12 +1225,12 @@ void coinObjects() {
 	Coordinate coin_L2_C0;
 	Coordinate coin_L2_C1;
 
-	coin_L0_C0.x = randomValue(-windowWidth, -obstacleWidth - coinWidth);
-	coin_L0_C1.x = randomValue(-windowWidth, -obstacleWidth - coinWidth);
-	coin_L1_C0.x = randomValue(0, windowWidth - obstacleWidth - coinWidth);
-	coin_L1_C1.x = randomValue(0, windowWidth - obstacleWidth - coinWidth);
-	coin_L2_C0.x = randomValue(windowWidth, 2 * windowWidth - obstacleWidth - coinWidth);
-	coin_L2_C1.x = randomValue(windowWidth, 2 * windowWidth - obstacleWidth - coinWidth);
+	coin_L0_C0.x = randomValue(-screenX, -obstacleWidth - coinWidth);
+	coin_L0_C1.x = randomValue(-screenX, -obstacleWidth - coinWidth);
+	coin_L1_C0.x = randomValue(0, screenX - obstacleWidth - coinWidth);
+	coin_L1_C1.x = randomValue(0, screenX - obstacleWidth - coinWidth);
+	coin_L2_C0.x = randomValue(screenX, 2 * screenX - obstacleWidth - coinWidth);
+	coin_L2_C1.x = randomValue(screenX, 2 * screenX - obstacleWidth - coinWidth);
 
 	coin_L0_C0.y = 70;
 	coin_L0_C1.y = 70;
@@ -1272,8 +1276,8 @@ void obstacleObject() {
 	Coordinate obstacle_L2_C0;
 
 	obstacle_L0_C0.x = -obstacleWidth;
-	obstacle_L1_C0.x = windowWidth - obstacleWidth;
-	obstacle_L2_C0.x = 2 * windowWidth - obstacleWidth;
+	obstacle_L1_C0.x = screenX - obstacleWidth;
+	obstacle_L2_C0.x = 2 * screenX - obstacleWidth;
 
 	obstacle_L0_C0.y = 70;
 	obstacle_L1_C0.y = 70;
@@ -1624,7 +1628,7 @@ void keyboard_up(unsigned char key, int x, int y) {
 }
 
 void cursur(int button, int state, int mouseX, int mouseY) {
-	mouseY = windowHeight - mouseY;
+	mouseY = screenY - mouseY;
 
 	bool checkX = (mouseX <= ButtonHitBox.newX) &&
 		(mouseX >= ButtonCoordinate.x);
@@ -1654,7 +1658,7 @@ void cursur(int button, int state, int mouseX, int mouseY) {
 }
 
 void PassiveMotion(int mouseX, int mouseY) {
-	mouseY = windowHeight - mouseY;
+	mouseY = screenY - mouseY;
 
 	bool checkX = (mouseX <= ButtonHitBox.newX) &&
 		(mouseX >= ButtonCoordinate.x);
@@ -1702,7 +1706,7 @@ void main(int argc, char** argr) {
 	//5, 0, 15
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glClearColor(5.0f / 255.0f, 0.0f / 255.0f, 15.0f / 255.0f, 0.0f);
-	gluOrtho2D(0.0, windowWidth, 0.0, windowHeight);
+	gluOrtho2D(0.0, screenX, 0.0, screenY);
 
 	glEnable(GL_BLEND); //Enable blending.
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

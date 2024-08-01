@@ -1,1 +1,2 @@
 D:\Hobby\Programing\Graphics\Zenith land\Debug\OpenGL2DTemplate.exe
+D:\Collage\Graphics\Zenith land\Debug\OpenGL2DTemplate.exe
